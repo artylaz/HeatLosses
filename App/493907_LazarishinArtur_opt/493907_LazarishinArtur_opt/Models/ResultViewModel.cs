@@ -24,10 +24,25 @@ namespace _493907_LazarishinArtur_opt.Models
 
             try
             {
-
                 app.Workbooks.Open(path);
                 app.ScreenUpdating = false;
                 Excel.Worksheet sheet = (Excel.Worksheet)app.Worksheets["Data"];
+
+                sheet.Range["C5"].Value = data.KoefTeMatTr;
+                sheet.Range["C6"].Value = data.KoefTeOneMatIzl;
+                sheet.Range["C7"].Value = data.KoefTeTwoMatIzl;
+                sheet.Range["C8"].Value = data.KoefTeThreeMatIzl;
+                sheet.Range["C10"].Value = data.StoOne;
+                sheet.Range["C11"].Value = data.StoTwo;
+                sheet.Range["C12"].Value = data.StoThree;
+                sheet.Range["C13"].Value = data.SumTolUzl;
+                sheet.Range["C15"].Value = data.D_vnu;
+                sheet.Range["C16"].Value = data.D_vne;
+                sheet.Range["C21"].Value = data.T_okr;
+                sheet.Range["C22"].Value = data.T_gid;
+                sheet.Range["C23"].Value = data.T_nar;
+                sheet.Range["C25"].Value = data.KoefTeplo_vn;
+                sheet.Range["C26"].Value = data.KoefTeplo_nar;
 
                 app.Run((object)"Оптимизация");
                 app.ScreenUpdating = true;
@@ -55,9 +70,18 @@ namespace _493907_LazarishinArtur_opt.Models
                 app.Quit();
             }
 
-            
-            return true;
+            if (X1 == 0 && X2 == 0 && X2 == 0)
+            {
+                data.IsRes = false;
+                return false;
+                
+            }
 
+            else
+            {
+                data.IsRes = true;
+                return true;
+            }
         }
 
         public double D3 { get; set; }

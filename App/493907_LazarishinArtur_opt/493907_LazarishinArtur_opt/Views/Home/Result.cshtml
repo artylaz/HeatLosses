@@ -1,49 +1,123 @@
 ﻿@model ResultViewModel
 
 <main>
-    @*<div id="result" class="container gap-3 div-ras content mt-5 mb-5 display-none">
+    <div id="result" class="container gap-3 div-ras content mt-5 mb-5">
 
-            <div class="row justify-content-center mt-3">
-                <div class="col-12 text-center">
-                    <p class="h2">Результат расчёта:</p>
-                </div>
+        <div class="row justify-content-center mt-3">
+            <div class="col-12 text-center">
+                <p class="h2">Результат расчёта:</p>
             </div>
+        </div>
 
-            <div class="row justify-content-center">
-                <label for="apertureRatio" class="col-sm-8 col-form-label">Коэффициент диафрагмирования(Φ)</label>
-                <div class="col-sm-4 ">
-                    <div class="input-group">
-                        <input disabled id="apertureRatio" asp-for="GetApertureRatio" type="text" class="form-control" aria-describedby="apertureRatio">
-                        <span class="input-group-text" id="apertureRatio"></span>
-                    </div>
+        <div class="row justify-content-center mb-1">
+            <label for="linKoefTepl" class="col-sm-8 col-form-label">Линейный коэффициент теплопередачи</label>
+            <div class="col-sm-4 ">
+                <div class="input-group">
+                    <input readonly id="linKoefTepl" asp-for="LinKoefTepl" value="@string.Format("{0:f2}", Model.LinKoefTepl)" type="text" class="form-control" aria-describedby="linKoefTepl">
+                    <span class="input-group-text" id="linKoefTepl"></span>
                 </div>
             </div>
+        </div>
 
-            <div class="row justify-content-center mb-1">
-                <label for="radiationHeatLoss" class="col-sm-8 col-form-label">Потери теплоты излучения (Qл)</label>
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <input disabled id="radiationHeatLoss" asp-for="GetRadiationHeatLoss" type="text" class="form-control" aria-describedby="radiationHeatLoss">
-                        <span class="input-group-text" id="radiationHeatLoss">Дж</span>
-                    </div>
+        <div class="row justify-content-center mb-1">
+            <label for="teplPotok" class="col-sm-8 col-form-label">Тепловой поток</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input readonly id="teplPotok" asp-for="TeplPotok" value="@string.Format("{0:f2}", Model.TeplPotok)" type="text" class="form-control" aria-describedby="teplPotok">
+                    <span class="input-group-text" id="teplPotok"></span>
                 </div>
             </div>
+        </div>
 
-            <div class="row justify-content-center mb-2">
-                <label for="nameRas mb-1" class="col-sm-8 col-form-label">Наименование расчёта</label>
-                <div class="col-sm-8">
-                    <div class="input-group">
-                        <input id="nameRas" asp-for="Name" type="text" class="form-control">
-                    </div>
+        <div class="row justify-content-center mb-1">
+            <label for="t_narPovIzl" class="col-sm-8 col-form-label">Температура наружной поверхности изоляции</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input readonly id="t_narPovIzl" asp-for="T_narPovIzl" value="@string.Format("{0:f2}", Model.T_narPovIzl)" type="text" class="form-control" aria-describedby="t_narPovIzl">
+                    <span class="input-group-text" id="t_narPovIzl"></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <button type="button" onclick="Save()" class="btn btn-outline-light btn-lg bt_s">
-                        Сохранить
-                    </button>
-                    <input type="submit" class="btn btn-outline-light btn-lg bt_s" value="Отчёт" />
+        </div>
+
+        <div class="row justify-content-center mb-1">
+            <label for="razT" class="col-sm-8 col-form-label">Разность температур</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input readonly id="razT" asp-for="RazT" type="text" value="@string.Format("{0:f2}", Model.RazT)" class="form-control" aria-describedby="razT">
+                    <span class="input-group-text" id="razT"></span>
                 </div>
             </div>
-        </div>*@
+        </div>
+
+        <br />
+
+        <div class="row justify-content-center mb-1">
+            <label for="x1" class="col-sm-8 col-form-label">Первый изоляционный слой (X1)</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input readonly id="x1" asp-for="X1" value="@string.Format("{0:f2}", Model.X1)" type="text" class="form-control" aria-describedby="x1">
+                    <span class="input-group-text" id="x1">м</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-1">
+            <label for="x2" class="col-sm-8 col-form-label">Второй изоляционный слой (X2)</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input readonly id="x1" asp-for="X2" value="@string.Format("{0:f2}", Model.X2)" type="text" class="form-control" aria-describedby="x2">
+                    <span class="input-group-text" id="x2">м</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-1">
+            <label for="x3" class="col-sm-8 col-form-label">Третий изоляционный слой (X3)</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input readonly id="x3" asp-for="X3" value="@string.Format("{0:f2}", Model.X3)" type="text" class="form-control" aria-describedby="x3">
+                    <span class="input-group-text" id="x3">м</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-1">
+            <label for="sum_X" class="col-sm-8 col-form-label">Суммарная толщина изоляционных слоёв</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input readonly id="sum_X" asp-for="Sum_X" value="@string.Format("{0:f2}", Model.Sum_X)" type="text" class="form-control" aria-describedby="sum_X">
+                    <span class="input-group-text" id="sum_X">м</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mb-1">
+            <label for="cel" class="col-sm-8 col-form-label">Стоимость одного погонного метра изоляции (целевая функция)</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input readonly id="cel" asp-for="Cel" value="@string.Format("{0:f2}", Model.Cel)" type="text" class="form-control" aria-describedby="cel">
+                    <span class="input-group-text" id="cel"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-outline-light btn-lg bt_s" href="@Url.Action("Report","Home",Model.data)">Отчёт</a>
+            </div>
+        </div>
+    </div>
+    <div class="container d-grid gap-3 div-ras content mt-5 mb-5 anim-5">
+        <div class="row justify-content-center mt-3">
+            <div class="col-12 text-center">
+                <p class="h2">Распределение по толщине изоляции</p>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3">
+
+            <canvas class="col-12 text-center" id="myChart"></canvas>
+
+        </div>
+
+    </div>
 </main>

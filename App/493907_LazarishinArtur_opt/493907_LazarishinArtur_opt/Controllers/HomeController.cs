@@ -1,5 +1,7 @@
 ﻿using _493907_LazarishinArtur_opt.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace _493907_LazarishinArtur_opt.Controllers
 {
@@ -7,7 +9,7 @@ namespace _493907_LazarishinArtur_opt.Controllers
     {
         public IActionResult Index()
         {
-            var data = new DataViewModel
+            var date = new DataViewModel
             {
                 KoefTeMatTr = 24,
 
@@ -31,16 +33,30 @@ namespace _493907_LazarishinArtur_opt.Controllers
                 KoefTeplo_vn = 500,
                 KoefTeplo_nar = 100,
             };
-            
-            
-            return View(data);
+
+
+            return View(date);
         }
 
         public IActionResult Result(DataViewModel data)
         {
-            var rez = new ResultViewModel(data);
-            rez.SolverRun();
-            return View(rez);
+            if (ModelState.IsValid)
+            {
+
+                var rez = new ResultViewModel(data);
+                var isRes = rez.SolverRun();
+                    return View(rez);
+            }
+            else
+                return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Report(DataViewModel dateViewModel)
+        {
+            var resultViewModel = new ResultViewModel(dateViewModel);
+            var isRes = resultViewModel.SolverRun();
+            return View(resultViewModel);
         }
 
     }

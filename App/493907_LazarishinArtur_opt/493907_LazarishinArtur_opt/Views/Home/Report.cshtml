@@ -1,0 +1,333 @@
+﻿@model ResultViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/f-logo.png" type="image/x-icon">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style-report.css" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <main>
+            <form class="form-ras anim-5">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a id="back" class="btn btn-dark mt-2 ms-2" href="@Url.Action("Result",Model.data)"> Назад</a>
+                </div>
+
+                <div class="container d-grid gap-3 mt-4 mb-4 ">
+
+                    <h1>Расчет толщины тепловой изоляции трубопроводов </h1>
+                    <div class="row justify-content-center mt-3">
+                        <div class="col-12 text-center">
+                            <p class="h2">Исходнные данные:</p>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="koefTeMatTr" class="col-sm-8 col-form-label">Коэффициент теплопроводности материала трубы</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="koefTeMatTr" type="text" autofocus oninput="HideBlock(this)" asp-for="data.KoefTeMatTr" class="form-control" aria-describedby="koefTeMatTr">
+                                <span class="input-group-text" id="koefTeMatTr">Вт/(мС)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="koefTeOneMatIzl" class="col-sm-8 col-form-label">Коэффициент теплопроводности первого материала изоляции</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="koefTeOneMatIzl" asp-for="data.KoefTeOneMatIzl" type="text" class="form-control" aria-describedby="koefTeOneMatIzl">
+                                <span class="input-group-text" id="koefTeOneMatIzl">Вт/(мС)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="koefTeTwoMatIzl" class="col-sm-8 col-form-label">Коэффициент теплопроводности второго материала изоляции</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="koefTeTwoMatIzl" asp-for="data.KoefTeTwoMatIzl" type="text" class="form-control" aria-describedby="koefTeTwoMatIzl">
+                                <span class="input-group-text" id="koefTeTwoMatIzl">Вт/(мС)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="koefTeThreeMatIzl" class="col-sm-8 col-form-label">Коэффициент теплопроводности третьего материала изоляции</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="koefTeThreeMatIzl" asp-for="data.KoefTeThreeMatIzl" type="text" class="form-control" aria-describedby="koefTeThreeMatIzl">
+                                <span class="input-group-text" id="koefTeThreeMatIzl">Вт/(мС)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="stoOne" class="col-sm-8 col-form-label">Стоимость материала изоляции первого материала</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="stoOne" asp-for="data.StoOne" type="text" class="form-control" aria-describedby="stoOne">
+                                <span class="input-group-text" id="stoOne">усл.ед./м3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="stoTwo" class="col-sm-8 col-form-label">Стоимость материала изоляции второго материала</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="stoTwo" asp-for="data.StoTwo" type="text" class="form-control" aria-describedby="stoTwo">
+                                <span class="input-group-text" id="stoTwo">усл.ед./м3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="stoThree" class="col-sm-8 col-form-label">Стоимость материала изоляции третьего материала</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="stoThree" asp-for="data.StoThree" type="text" class="form-control" aria-describedby="stoThree">
+                                <span class="input-group-text" id="stoThree">усл.ед./м3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="sumTolUzl" class="col-sm-8 col-form-label">Суммарная толщина изоляции</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="sumTolUzl" asp-for="data.SumTolUzl" type="text" class="form-control" aria-describedby="sumTolUzl">
+                                <span class="input-group-text" id="sumTolUzl">м</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="d_vnu" class="col-sm-8 col-form-label">Внутренний диаметр трубы</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="d_vnu" asp-for="data.D_vnu" type="text" class="form-control" aria-describedby="d_vnu">
+                                <span class="input-group-text" id="d_vnu">м</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row justify-content-center">
+                        <label for="d_vne" class="col-sm-8 col-form-label">Внешний диаметр трубы</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="d_vne" asp-for="data.D_vne" type="text" class="form-control" aria-describedby="d_vne">
+                                <span class="input-group-text" id="d_vne">м</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="t_okr" class="col-sm-8 col-form-label">Температура окружающей среды</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="t_okr" asp-for="data.T_okr" type="text" class="form-control" aria-describedby="t_okr">
+                                <span class="input-group-text" id="t_okr">°C</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="t_gid" class="col-sm-8 col-form-label">Температура жидкости</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="t_gid" asp-for="data.T_gid" type="text" class="form-control" aria-describedby="t_gid">
+                                <span class="input-group-text" id="t_gid">°C</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="t_nar" class="col-sm-8 col-form-label">Температура наружной поверхности</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="t_nar" asp-for="data.T_nar" type="text" class="form-control" aria-describedby="t_nar">
+                                <span class="input-group-text" id="t_nar">°C</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="koefTeplo_vn" class="col-sm-8 col-form-label">Внутренний козффициент теплоотдачи </label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="koefTeplo_vn" asp-for="data.KoefTeplo_vn" type="text" class="form-control" aria-describedby="koefTeplo_vn">
+                                <span class="input-group-text" id="koefTeplo_vn">Вт/ м2С</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <label for="koefTeplo_nar" class="col-sm-8 col-form-label">Наружный козффициент теплоотдачи </label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input id="koefTeplo_nar" asp-for="data.KoefTeplo_nar" type="text" class="form-control" aria-describedby="koefTeplo_nar">
+                                <span class="input-group-text" id="koefTeplo_nar">Вт/ м2С</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="container gap-3 div-ras content mt-1 mb-1">
+
+                    <div class="row justify-content-center mt-1">
+                        <div class="col-12 text-center">
+                            <p class="h2">Результат расчёта:</p>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1">
+                        <label for="linKoefTepl" class="col-sm-8 col-form-label">Линейный коэффициент теплопередачи</label>
+                        <div class="col-sm-4 ">
+                            <div class="input-group">
+                                <input readonly id="linKoefTepl" asp-for="LinKoefTepl" value="@string.Format("{0:f2}", Model.LinKoefTepl)" type="text" class="form-control" aria-describedby="linKoefTepl">
+                                <span class="input-group-text" id="linKoefTepl"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1">
+                        <label for="teplPotok" class="col-sm-8 col-form-label">Тепловой поток</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input readonly id="teplPotok" asp-for="TeplPotok" value="@string.Format("{0:f2}", Model.TeplPotok)" type="text" class="form-control" aria-describedby="teplPotok">
+                                <span class="input-group-text" id="teplPotok"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1">
+                        <label for="t_narPovIzl" class="col-sm-8 col-form-label">Температура наружной поверхности изоляции</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input readonly id="t_narPovIzl" asp-for="T_narPovIzl" value="@string.Format("{0:f2}", Model.T_narPovIzl)" type="text" class="form-control" aria-describedby="t_narPovIzl">
+                                <span class="input-group-text" id="t_narPovIzl"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1">
+                        <label for="razT" class="col-sm-8 col-form-label">Разность температур</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input readonly id="razT" asp-for="RazT" type="text" value="@string.Format("{0:f2}", Model.RazT)" class="form-control" aria-describedby="razT">
+                                <span class="input-group-text" id="razT"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <div class="row justify-content-center mb-1">
+                        <label for="x1" class="col-sm-8 col-form-label">Первый изоляционный слой</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input readonly id="x1" asp-for="X1" value="@string.Format("{0:f2}", Model.X1)" type="text" class="form-control" aria-describedby="x1">
+                                <span class="input-group-text" id="x1"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row justify-content-center mb-1">
+                        <label for="x2" class="col-sm-8 col-form-label">Второй изоляционный слой</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input readonly id="x1" asp-for="X2" value="@string.Format("{0:f2}", Model.X2)" type="text" class="form-control" aria-describedby="x2">
+                                <span class="input-group-text" id="x2"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1">
+                        <label for="x3" class="col-sm-8 col-form-label">Третий изоляционный слой</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input readonly id="x3" asp-for="X3" value="@string.Format("{0:f2}", Model.X3)" type="text" class="form-control" aria-describedby="x3">
+                                <span class="input-group-text" id="x3"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1">
+                        <label for="sum_X" class="col-sm-8 col-form-label">Суммарная толщина изоляционных слоёв</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input readonly id="sum_X" asp-for="Sum_X" value="@string.Format("{0:f2}", Model.Sum_X)" type="text" class="form-control" aria-describedby="sum_X">
+                                <span class="input-group-text" id="sum_X"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-1">
+                        <label for="cel" class="col-sm-8 col-form-label">Стоимость одного погонного метра изоляции (целевая функция)</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input readonly id="cel" asp-for="Cel" value="@string.Format("{0:f2}", Model.Cel)" type="text" class="form-control" aria-describedby="cel">
+                                <span class="input-group-text" id="cel"></span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row mt-5 ">
+                    <div class="col-5 my-4">
+                        <div class="bottom-0">Дата формирования документа</div>
+                    </div>
+                    <div class="col-3 "></div>
+                    <div class="col-4 my-4">
+                        <div id="current_date_time_block" class="bottom-0"></div>
+                        <script type="text/javascript">
+
+                            function zero_first_format(value) {
+                                if (value < 10) {
+                                    value = '0' + value;
+                                }
+                                return value;
+                            }
+
+                            function date_time() {
+                                var current_datetime = new Date();
+                                var day = zero_first_format(current_datetime.getDate());
+                                var month = zero_first_format(current_datetime.getMonth() + 1);
+                                var year = current_datetime.getFullYear();
+                                var hours = zero_first_format(current_datetime.getHours());
+                                var minutes = zero_first_format(current_datetime.getMinutes());
+                                var seconds = zero_first_format(current_datetime.getSeconds());
+
+                                return day + "." + month + "." + year;
+                            }
+                            document.getElementById('current_date_time_block').innerHTML = date_time();
+                        </script>
+                    </div>
+            </form>
+
+            
+
+        </main>
+
+    </div>
+    @await Html.PartialAsync("ScriptsPartial")
+    <script>
+        document.getElementById("back").style.display = "none";
+        window.print();
+        setTimeout(() => { document.getElementById("back").style.display = "block" }, 2000);
+    </script>
+</body>
+</html>
+
