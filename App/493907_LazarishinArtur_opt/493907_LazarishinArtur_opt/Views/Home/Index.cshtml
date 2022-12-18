@@ -1,3 +1,179 @@
-﻿<main>
+﻿@model DataViewModel
+
+<main>
+    <form class="form-ras anim-5" method="get" asp-action="Result" asp-controller="Home">
+        <div class="container d-grid gap-3 div-ras content mt-5 mb-5 ">
+
+            <div class="row justify-content-center mt-3">
+                <div class="col-12 text-center">
+                    <p class="h2">Ведите данные для расчёта:</p>
+                </div>
+            </div>
+
+
+
+            <div class="row justify-content-center">
+                <label for="koefTeMatTr" class="col-sm-8 col-form-label">Коэффициент теплопроводности материала трубы</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="koefTeMatTr" type="text" autofocus oninput="HideBlock(this)" asp-for="KoefTeMatTr" class="form-control" aria-describedby="koefTeMatTr">
+                        <span class="input-group-text" id="koefTeMatTr">Вт/(мС)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="koefTeOneMatIzl" class="col-sm-8 col-form-label">Коэффициент теплопроводности первого материала изоляции</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="koefTeOneMatIzl" asp-for="KoefTeOneMatIzl" type="text" class="form-control" aria-describedby="koefTeOneMatIzl">
+                        <span class="input-group-text" id="koefTeOneMatIzl">Вт/(мС)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="koefTeTwoMatIzl" class="col-sm-8 col-form-label">Коэффициент теплопроводности второго материала изоляции</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="koefTeTwoMatIzl" asp-for="KoefTeTwoMatIzl" type="text" class="form-control" aria-describedby="koefTeTwoMatIzl">
+                        <span class="input-group-text" id="koefTeTwoMatIzl">Вт/(мС)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="koefTeThreeMatIzl" class="col-sm-8 col-form-label">Коэффициент теплопроводности третьего материала изоляции</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="koefTeThreeMatIzl" asp-for="KoefTeThreeMatIzl" type="text" class="form-control" aria-describedby="koefTeThreeMatIzl">
+                        <span class="input-group-text" id="koefTeThreeMatIzl">Вт/(мС)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="stoOne" class="col-sm-8 col-form-label">Стоимость материала изоляции первого материала</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="stoOne" asp-for="StoOne" type="text" class="form-control" aria-describedby="stoOne">
+                        <span class="input-group-text" id="stoOne">усл.ед./м3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="stoTwo" class="col-sm-8 col-form-label">Стоимость материала изоляции второго материала</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="stoTwo" asp-for="StoTwo" type="text" class="form-control" aria-describedby="stoTwo">
+                        <span class="input-group-text" id="stoTwo">усл.ед./м3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="stoThree" class="col-sm-8 col-form-label">Стоимость материала изоляции третьего материала</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="stoThree" asp-for="StoThree" type="text" class="form-control" aria-describedby="stoThree">
+                        <span class="input-group-text" id="stoThree">усл.ед./м3</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="sumTolUzl" class="col-sm-8 col-form-label">Суммарная толщина изоляции</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="sumTolUzl" asp-for="SumTolUzl" type="text" class="form-control" aria-describedby="sumTolUzl">
+                        <span class="input-group-text" id="sumTolUzl">м</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="d_vnu" class="col-sm-8 col-form-label">Внутренний диаметр трубы</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="d_vnu" asp-for="D_vnu" type="text" class="form-control" aria-describedby="d_vnu">
+                        <span class="input-group-text" id="d_vnu">м</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="d_vne" class="col-sm-8 col-form-label">Внешний диаметр трубы</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="d_vne" asp-for="D_vne" type="text" class="form-control" aria-describedby="d_vne">
+                        <span class="input-group-text" id="d_vne">м</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="t_okr" class="col-sm-8 col-form-label">Температура окружающей среды</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="t_okr" asp-for="T_okr" type="text" class="form-control" aria-describedby="t_okr">
+                        <span class="input-group-text" id="t_okr">°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="t_gid" class="col-sm-8 col-form-label">Температура жидкости</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="t_gid" asp-for="T_gid" type="text" class="form-control" aria-describedby="t_gid">
+                        <span class="input-group-text" id="t_gid">°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="t_nar" class="col-sm-8 col-form-label">Температура наружной поверхности</label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="t_nar" asp-for="T_nar" type="text" class="form-control" aria-describedby="t_nar">
+                        <span class="input-group-text" id="t_nar">°C</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="koefTeplo_vn" class="col-sm-8 col-form-label">Внутренний козффициент теплоотдачи </label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="koefTeplo_vn" asp-for="KoefTeplo_vn" type="text" class="form-control" aria-describedby="koefTeplo_vn">
+                        <span class="input-group-text" id="koefTeplo_vn">Вт/ м2С</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <label for="koefTeplo_nar" class="col-sm-8 col-form-label">Наружный козффициент теплоотдачи </label>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <input id="koefTeplo_nar" asp-for="KoefTeplo_nar" type="text" class="form-control" aria-describedby="koefTeplo_nar">
+                        <span class="input-group-text" id="koefTeplo_nar">Вт/ м2С</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-outline-light btn-lg bt_z">
+                        Рассчитать
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </form>
 </main>
+
+
+
 

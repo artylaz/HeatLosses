@@ -1,3 +1,5 @@
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
@@ -9,6 +11,12 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
+
+var enCulture = new CultureInfo("en-US");
+CultureInfo.CurrentCulture = enCulture;
+CultureInfo.CurrentUICulture = enCulture;
+CultureInfo.DefaultThreadCurrentCulture = enCulture;
+CultureInfo.DefaultThreadCurrentUICulture = enCulture;
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
